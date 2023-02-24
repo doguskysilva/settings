@@ -5,7 +5,11 @@
 # make a git push
 
 #file="files.txt"
-destination="`pwd`/resources"
+DESTINATION="`pwd`/resources"
+GIT='git --git-dir='$PWD'/.git'
+MESSAGE="Backup settings in `date`"
+
+echo $MESSAGE
 
 getFiles() {
     files=()
@@ -25,11 +29,15 @@ backup() {
 
         if [[ -f $p_file ]]; then
             echo "$p_file => starting backup"
-            cp $p_file $destination
+            #cp $p_file $DESTINATION
         else
             echo "$p_file => not found"
         fi
     done
+
+    $GIT add .
+    $GIT commit -m "$MESSAGE"
+    $GIT push
 }
 
 restore() {
