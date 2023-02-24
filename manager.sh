@@ -15,7 +15,7 @@ getFiles() {
 }
 
 backup() {
-    echo "Backuping all setting files"
+    echo "Backuping all setting files \n"
 
     getFiles $FILES
     for f in "${files[@]}";
@@ -36,7 +36,24 @@ backup() {
 }
 
 restore() {
-    echo "Put all files in each folder"
+    echo "Restoring files in each folder \n"
+    
+    getFiles $FILES
+    for f in "${files[@]}";
+    do
+        p_file="${f/#\~/$HOME}"
+        path="$(dirname $p_file)"
+        file="$(basename $p_file)"
+        r_file="$RESOURCES/$file"
+        
+        if [[ -f $r_file ]]; then
+            if [[ ! -d $path ]]; then
+                mkdir -p $path
+            fi
+            echo "$r_file => $p_file"
+            cp $r_file $path
+        fi
+    done
 }
 
 if [[ "$1" == "backup" ]]; then
