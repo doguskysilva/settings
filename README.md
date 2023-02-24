@@ -5,7 +5,7 @@ Each line represent a file. By security never put the user folder in path.
 Use tilde expansion to represent user folder `~/.config` and not `/home/user/.config`
 
 ## Backup
-``sh manager.sh backup``
+```bash sh manager.sh backup```
 
 The command will:
 - get all files listed in `files.txt` and put in `resources` folder 
@@ -14,7 +14,7 @@ The command will:
 - push all files to repository
 
 ## Restore
-``sh manager.sh restore``
+```bash sh manager.sh restore```
 
 The command will:
 - get all files inside resources and put in each folder following `files.txt`
