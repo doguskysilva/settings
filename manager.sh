@@ -6,7 +6,8 @@
 #file="files.txt"
 DESTINATION="`pwd`/resources"
 GIT='git --git-dir='$PWD'/.git'
-MESSAGE="Backup settings in `date`"
+NEWLINE=$'\n'
+MESSAGE="Backup settings in `date` ${NEWLINE}"
 
 getFiles() {
     files=()
@@ -32,8 +33,7 @@ backup() {
         fi
     done
     
-    MESSAGE="$MESSAGE
-    `git diff --cached --name-status`"
+    MESSAGE="$MESSAGE `git diff --cached --name-status`"
 
     $GIT add .
     $GIT commit -m "$MESSAGE"
