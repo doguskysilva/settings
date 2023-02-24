@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-# add all files to stage and commit with a default file message
-# make a git push
 
-#file="files.txt"
-DESTINATION="`pwd`/resources"
+RESOURCES="`pwd`/resources"
 GIT='git --git-dir='$PWD'/.git'
 MESSAGE="Backup settings in `date`"
+FILES="files.txt"
 
 getFiles() {
     files=()
@@ -19,14 +17,14 @@ getFiles() {
 backup() {
     echo "Backuping all setting files"
 
-    getFiles "files.txt"
+    getFiles $FILES
     for f in "${files[@]}";
     do
         p_file="${f/#\~/$HOME}"
 
         if [[ -f $p_file ]]; then
-            echo "$p_file => starting backup"
-            cp $p_file $DESTINATION
+            echo "$p_file => copying file"
+            cp $p_file $RESOURCES
         else
             echo "$p_file => not found"
         fi
