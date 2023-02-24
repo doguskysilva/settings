@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# start a copy of all files to this folder
 # add all files to stage and commit with a default file message
 # make a git push
 
@@ -8,8 +7,6 @@
 DESTINATION="`pwd`/resources"
 GIT='git --git-dir='$PWD'/.git'
 MESSAGE="Backup settings in `date`"
-
-echo $MESSAGE
 
 getFiles() {
     files=()
@@ -29,15 +26,18 @@ backup() {
 
         if [[ -f $p_file ]]; then
             echo "$p_file => starting backup"
-            #cp $p_file $DESTINATION
+            cp $p_file $DESTINATION
         else
             echo "$p_file => not found"
         fi
     done
+    
+    MESSAGE="$MESSAGE
+    `git diff --cached --name-status`"
 
     $GIT add .
     $GIT commit -m "$MESSAGE"
-    $GIT push
+    #$GIT push
 }
 
 restore() {
