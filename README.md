@@ -23,3 +23,7 @@ sh manager.sh restore
 The command will:
 - get all files inside resources and put in each folder following `files.txt`
 - if a folder not exists the script will create the path
+
+### Tools to use before restore
+Install plugins to tmux https://github.com/tmux-plugins/tpm
+Install some nerd font

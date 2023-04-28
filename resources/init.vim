@@ -24,7 +24,7 @@ set backupdir=~/.cache/vim
 "   Plugins
 call plug#begin()
  Plug 'preservim/nerdtree'
- Plug 'dracula/vim'
+ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 call plug#end()
 
 "   Plugins settings
@@ -33,7 +33,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 syntax enable
-colorscheme dracula
+colorscheme catppuccin-mocha
 
 "   Keymaps
 ""  Press i to enter insert mode, and ii to exit insert mode.
